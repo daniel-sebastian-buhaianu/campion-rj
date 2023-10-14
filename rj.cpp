@@ -11,12 +11,12 @@ struct pozitie
 	int i, j;
 };
 pozitie ps[NP], cd[NP][NMAX*MMAX], p, v;
-int a[NP][NMAX][MMAX], inc[NP], sf[NP], tmin;
+int a[NP][NMAX][MMAX], inc[NP], sf[NP];
 int dl[] = {-1, -1, 0, 1, 1, 1, 0, -1};
 int dc[] = {0, 1, 1, 1, 0, -1, -1, -1};
 int main()
 {
-	int n, m, i, j, k, d, imin, jmin;
+	int n, m, i, j, k, d, imin, jmin, tmin;
 	char c;
 	fin >> n >> m;
 	fin.get(c);
@@ -73,16 +73,22 @@ int main()
 				{
 					a[k][v.i][v.j] = 1 + a[k][p.i][p.j];
 					cd[k][++sf[k]] = v;
-					if (k == 1
-						&& a[k][v.i][v.j] == a[k-1][v.i][v.j])
-					{
-						if (!tmin || a[k][v.i][v.j] < tmin)
-						{
-							tmin = a[k][v.i][v.j];
-							imin = v.i, jmin = v.j;
-						}
-					}
 				}
+			}
+		}
+	}
+	tmin = n*m;
+	for (i = 1; i <= n; i++)
+	{
+		for (j = 1; j <= m; j++)
+		{
+			if (a[0][i][j] == a[1][i][j]
+				&& a[0][i][j] > 0
+				&& a[0][i][j] < tmin)
+			{
+				tmin = a[0][i][j];
+				imin = i;
+				jmin = j;
 			}
 		}
 	}
@@ -90,4 +96,4 @@ int main()
 	fout.close();
 	return 0;
 }
-// scor 60
+// scor 100
