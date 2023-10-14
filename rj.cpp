@@ -86,8 +86,8 @@ int main()
 			}
 		}
 	}
-	fout << imin << ' ' << jmin << ' ' << tmin;
+	fout << tmin << ' ' << imin << ' ' << jmin;
 	fout.close();
 	return 0;
 }
-// scor 10
+// scor 60
